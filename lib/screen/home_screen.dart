@@ -6,6 +6,18 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: BottomAppBar(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Icon(Icons.home),
+            Icon(Icons.favorite),
+            Icon(Icons.shopping_cart),
+            Icon(Icons.receipt_long),
+            Icon(Icons.person),
+          ],
+        ),
+      ),
       appBar: AppBar(
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -26,7 +38,7 @@ class HomeScreen extends StatelessWidget {
       body: ListView(
         children: [
           Padding(
-            padding: const EdgeInsets.only(left: 16,right: 16,top: 16),
+            padding: const EdgeInsets.only(left: 16, right: 16, top: 16),
             child: TextField(
               decoration: InputDecoration(
                 border: OutlineInputBorder(
@@ -38,12 +50,19 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 16,right: 16),
+            padding: const EdgeInsets.only(left: 16, right: 16),
             child: Container(
               height: 300,
               child: Image.network(
                 'https://cdn.pixabay.com/photo/2020/11/13/23/49/christmas-5740350_1280.png',
               ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 16, right: 16),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [Text('T-shirt'), Text('See All')],
             ),
           ),
         ],
