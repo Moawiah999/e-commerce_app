@@ -87,7 +87,7 @@ class HomeScreen extends StatelessWidget {
                               trailing: IconButton(
                                 onPressed: () {},
                                 icon: Icon(
-                                  Icons.delete,
+                                  Icons.shopping_cart_sharp,
                                   color: Colors.red,
                                   size: 27,
                                 ),
