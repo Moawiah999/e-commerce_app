@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:online_store/screen/favorite_screen.dart';
+import 'package:online_store/widget/bottom_navigation_bar.dart';
 import 'package:online_store/widget/search_text_field.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -8,29 +8,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: BottomAppBar(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Icon(Icons.home),
-            IconButton(
-              onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return FavoriteScreen();
-                    },
-                  ),
-                );
-              },
-              icon: Icon(Icons.favorite),
-            ),
-            Icon(Icons.shopping_cart),
-            Icon(Icons.receipt_long),
-            Icon(Icons.person),
-          ],
-        ),
-      ),
+      bottomNavigationBar: bottomNavigationBar(),
       appBar: AppBar(
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -50,20 +28,80 @@ class HomeScreen extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
-        child: ListView(
-          children: [
-            SearchTextField(),
-            Container(
-              height: 300,
-              child: Image.network(
-                'https://cdn.pixabay.com/photo/2020/11/13/23/49/christmas-5740350_1280.png',
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              SearchTextField(),
+              SizedBox(height: 16),
+
+              Container(
+                height: 300,
+                child: Image.network(
+                  'https://cdn.pixabay.com/photo/2020/11/13/23/49/christmas-5740350_1280.png',
+                  fit: BoxFit.cover,
+                ),
               ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [Text('T-shirt'), Text('See All')],
-            ),
-          ],
+              SizedBox(height: 16),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [Text('T-shirt'), Text('See All')],
+              ),
+              SizedBox(height: 16),
+              GridView(
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 10,
+                  mainAxisSpacing: 5,
+                ),
+                children: List.generate(13, (index) {
+                  return Padding(
+                    padding: const EdgeInsets.only(
+                      left: 5,
+                      right: 5,
+                      bottom: 5,
+                    ),
+                    child: Container(
+                      child: Card(
+                        child: ListView(
+                          children: [
+                            Container(
+                              alignment: Alignment.centerRight,
+                              width: 150,
+                              height: 100,
+                              child: Image.network(
+                                'https://tmlewin.co.uk/cdn/shop/files/Crewneck_Tshirt_Black_67937_FLF.jpg?v=1727366656',
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 10),
+                              child: Container(
+                                alignment: Alignment.centerLeft,
+                                child: Text("Tshirt_Black"),
+                              ),
+                            ),
+                            SizedBox(height: 10),
+                            ListTile(
+                              title: Text("50\$"),
+                              trailing: IconButton(
+                                onPressed: () {},
+                                icon: Icon(
+                                  Icons.delete,
+                                  color: Colors.red,
+                                  size: 27,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  );
+                }),
+              ),
+            ],
+          ),
         ),
       ),
     );
