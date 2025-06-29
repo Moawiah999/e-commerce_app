@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:online_store/screen/favorite_screen.dart';
+import 'package:online_store/widget/search_text_field.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -11,7 +13,18 @@ class HomeScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Icon(Icons.home),
-            Icon(Icons.favorite),
+            IconButton(
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return FavoriteScreen();
+                    },
+                  ),
+                );
+              },
+              icon: Icon(Icons.favorite),
+            ),
             Icon(Icons.shopping_cart),
             Icon(Icons.receipt_long),
             Icon(Icons.person),
@@ -35,37 +48,23 @@ class HomeScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: ListView(
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(left: 16, right: 16, top: 16),
-            child: TextField(
-              decoration: InputDecoration(
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(16),
-                ),
-                hintText: 'Search for products',
-                prefixIcon: Icon(Icons.search),
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 16, right: 16),
-            child: Container(
+      body: Padding(
+        padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
+        child: ListView(
+          children: [
+            SearchTextField(),
+            Container(
               height: 300,
               child: Image.network(
                 'https://cdn.pixabay.com/photo/2020/11/13/23/49/christmas-5740350_1280.png',
               ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 16, right: 16),
-            child: Row(
+            Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [Text('T-shirt'), Text('See All')],
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
