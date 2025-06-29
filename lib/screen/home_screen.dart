@@ -70,8 +70,16 @@ class HomeScreen extends StatelessWidget {
                               alignment: Alignment.centerRight,
                               width: 150,
                               height: 100,
-                              child: Image.network(
-                                'https://tmlewin.co.uk/cdn/shop/files/Crewneck_Tshirt_Black_67937_FLF.jpg?v=1727366656',
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  IconButton(onPressed: () {
+                                    
+                                  }, icon: Icon(Icons.favorite)),
+                                  Image.network(
+                                    'https://tmlewin.co.uk/cdn/shop/files/Crewneck_Tshirt_Black_67937_FLF.jpg?v=1727366656',
+                                  ),
+                                ],
                               ),
                             ),
                             Padding(
