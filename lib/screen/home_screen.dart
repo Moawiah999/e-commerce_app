@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:online_store/screen/product_details_screen.dart';
 import 'package:online_store/widget/bottom_navigation_bar.dart';
 import 'package:online_store/widget/search_text_field.dart';
 
@@ -63,47 +64,58 @@ class HomeScreen extends StatelessWidget {
                       bottom: 5,
                     ),
                     child: Container(
-                      child: Card(
-                        child: ListView(
-                          children: [
-                            Container(
-                              alignment: Alignment.centerRight,
-                              width: 150,
-                              height: 100,
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  IconButton(
-                                    onPressed: () {},
-                                    icon: Icon(Icons.favorite),
-                                  ),
-                                  Image.network(
-                                    'https://tmlewin.co.uk/cdn/shop/files/Crewneck_Tshirt_Black_67937_FLF.jpg?v=1727366656',
-                                  ),
-                                ],
-                              ),
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return ProductDetailsScreen();
+                              },
                             ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 10),
-                              child: Container(
-                                alignment: Alignment.centerLeft,
-                                child: Text("Tshirt_Black"),
-                              ),
-                            ),
-                            SizedBox(height: 10),
-                            ListTile(
-                              title: Text("50\$"),
-                              trailing: IconButton(
-                                onPressed: () {},
-                                icon: Icon(
-                                  Icons.shopping_cart_sharp,
-                                  color: Colors.red,
-                                  size: 27,
+                          );
+                        },
+                        child: Card(
+                          child: ListView(
+                            children: [
+                              Container(
+                                alignment: Alignment.centerRight,
+                                width: 150,
+                                height: 100,
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    IconButton(
+                                      onPressed: () {},
+                                      icon: Icon(Icons.favorite),
+                                    ),
+                                    Image.network(
+                                      'https://tmlewin.co.uk/cdn/shop/files/Crewneck_Tshirt_Black_67937_FLF.jpg?v=1727366656',
+                                    ),
+                                  ],
                                 ),
                               ),
-                            ),
-                          ],
+                              Padding(
+                                padding: const EdgeInsets.only(left: 10),
+                                child: Container(
+                                  alignment: Alignment.centerLeft,
+                                  child: Text("Tshirt_Black"),
+                                ),
+                              ),
+                              SizedBox(height: 10),
+                              ListTile(
+                                title: Text("50\$"),
+                                trailing: IconButton(
+                                  onPressed: () {},
+                                  icon: Icon(
+                                    Icons.shopping_cart_sharp,
+                                    color: Colors.red,
+                                    size: 27,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
