@@ -55,7 +55,7 @@ class HomeScreen extends StatelessWidget {
                   crossAxisSpacing: 10,
                   mainAxisSpacing: 5,
                 ),
-                children: List.generate(13, (index) {
+                children: List.generate(5, (index) {
                   return Padding(
                     padding: const EdgeInsets.only(
                       left: 5,
@@ -71,11 +71,13 @@ class HomeScreen extends StatelessWidget {
                               width: 150,
                               height: 100,
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
                                 children: [
-                                  IconButton(onPressed: () {
-                                    
-                                  }, icon: Icon(Icons.favorite)),
+                                  IconButton(
+                                    onPressed: () {},
+                                    icon: Icon(Icons.favorite),
+                                  ),
                                   Image.network(
                                     'https://tmlewin.co.uk/cdn/shop/files/Crewneck_Tshirt_Black_67937_FLF.jpg?v=1727366656',
                                   ),

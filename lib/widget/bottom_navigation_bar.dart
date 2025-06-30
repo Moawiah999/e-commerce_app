@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:online_store/screen/cart_screen.dart';
 import 'package:online_store/screen/favorite_screen.dart';
 
 class bottomNavigationBar extends StatelessWidget {
-  const bottomNavigationBar({
-    super.key,
-  });
+  const bottomNavigationBar({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +24,18 @@ class bottomNavigationBar extends StatelessWidget {
             },
             icon: Icon(Icons.favorite),
           ),
-          Icon(Icons.shopping_cart),
+          IconButton(
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) {
+                    return CartScreen();
+                  },
+                ),
+              );
+            },
+            icon: Icon(Icons.shopping_cart),
+          ),
           Icon(Icons.receipt_long),
           Icon(Icons.person),
         ],
