@@ -16,9 +16,10 @@ class CartScreen extends StatelessWidget {
         ),
       ),
       appBar: AppBar(automaticallyImplyLeading: false, title: Text("My Cart")),
-      body: ListView(
-        children: [
-          Row(
+      body: ListView.builder(
+        itemCount: 2,
+        itemBuilder: (context, index) {
+          return Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               Container(
@@ -46,8 +47,8 @@ class CartScreen extends StatelessWidget {
                 icon: Icon(Icons.delete, color: Colors.red),
               ),
             ],
-          ),
-        ],
+          );
+        },
       ),
     );
   }
