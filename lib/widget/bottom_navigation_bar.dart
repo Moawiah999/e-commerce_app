@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:online_store/screen/cart_screen.dart';
 import 'package:online_store/screen/favorite_screen.dart';
 import 'package:online_store/screen/orders_history.dart';
+import 'package:online_store/screen/user_profile.dart';
 
 class bottomNavigationBar extends StatelessWidget {
   const bottomNavigationBar({super.key});
@@ -49,7 +50,18 @@ class bottomNavigationBar extends StatelessWidget {
             },
             icon: Icon(Icons.receipt_long),
           ),
-          Icon(Icons.person),
+          IconButton(
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) {
+                    return UserProfile();
+                  },
+                ),
+              );
+            },
+            icon: Icon(Icons.person),
+          ),
         ],
       ),
     );
