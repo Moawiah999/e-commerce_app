@@ -13,7 +13,6 @@ class UserProfile extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Spacer(flex: 1),
-
             Container(
               child: CircleAvatar(
                 backgroundImage: NetworkImage(

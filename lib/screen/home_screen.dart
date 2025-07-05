@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:online_store/screen/product_details_screen.dart';
 import 'package:online_store/widget/bottom_navigation_bar.dart';
-import 'package:online_store/widget/search_text_field.dart';
+import 'package:online_store/widget/custom_text_field.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -32,7 +32,7 @@ class HomeScreen extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              SearchTextField(),
+              CustomTextField(hintText: 'Search for products'),
               SizedBox(height: 16),
 
               Container(

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:online_store/widget/search_text_field.dart';
+import 'package:online_store/widget/custom_text_field.dart';
 
 class FavoriteScreen extends StatelessWidget {
   const FavoriteScreen({super.key});
@@ -15,12 +15,12 @@ class FavoriteScreen extends StatelessWidget {
         padding: const EdgeInsets.only(top: 16, left: 8, right: 8),
         child: Column(
           children: [
-            SearchTextField(),
+            CustomTextField(hintText: 'Search for products',),
             SizedBox(height: 15),
             Expanded(
               child: GridView(
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2, // 2 columns
+                  crossAxisCount: 2, 
                   crossAxisSpacing: 10,
                   mainAxisSpacing: 5,
                 ),
