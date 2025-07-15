@@ -6,7 +6,7 @@ class OrdersHistory extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Orders History ')),
+      appBar: AppBar(title: Text('Orders History')),
       body: ListView.builder(
         itemCount: 2,
         itemBuilder: (context, index) {
