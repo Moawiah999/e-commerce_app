@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:online_store/screen/product_details_screen.dart';
+import 'package:online_store/screen/product_screen.dart';
 import 'package:online_store/widget/bottom_navigation_bar.dart';
 import 'package:online_store/widget/custom_text_field.dart';
 
@@ -32,7 +33,10 @@ class HomeScreen extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              CustomTextField(hintText: 'Search for products',icon: Icons.search),
+              CustomTextField(
+                hintText: 'Search for products',
+                icon: Icons.search,
+              ),
               SizedBox(height: 16),
 
               Container(
@@ -48,80 +52,7 @@ class HomeScreen extends StatelessWidget {
                 children: [Text('T-shirt'), Text('See All')],
               ),
               SizedBox(height: 16),
-              GridView(
-                shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  crossAxisSpacing: 10,
-                  mainAxisSpacing: 5,
-                ),
-                children: List.generate(5, (index) {
-                  return Padding(
-                    padding: const EdgeInsets.only(
-                      left: 5,
-                      right: 5,
-                      bottom: 5,
-                    ),
-                    child: Container(
-                      child: GestureDetector(
-                        onTap: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) {
-                                return ProductDetailsScreen();
-                              },
-                            ),
-                          );
-                        },
-                        child: Card(
-                          child: ListView(
-                            children: [
-                              Container(
-                                alignment: Alignment.centerRight,
-                                width: 150,
-                                height: 100,
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    IconButton(
-                                      onPressed: () {},
-                                      icon: Icon(Icons.favorite),
-                                    ),
-                                    Image.network(
-                                      'https://tmlewin.co.uk/cdn/shop/files/Crewneck_Tshirt_Black_67937_FLF.jpg?v=1727366656',
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 10),
-                                child: Container(
-                                  alignment: Alignment.centerLeft,
-                                  child: Text("Tshirt_Black"),
-                                ),
-                              ),
-                              SizedBox(height: 10),
-                              ListTile(
-                                title: Text("50\$"),
-                                trailing: IconButton(
-                                  onPressed: () {},
-                                  icon: Icon(
-                                    Icons.shopping_cart_sharp,
-                                    color: Colors.red,
-                                    size: 27,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  );
-                }),
-              ),
+              ProductScreen(),
             ],
           ),
         ),
