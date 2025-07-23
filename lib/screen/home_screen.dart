@@ -32,7 +32,7 @@ class HomeScreen extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              CustomTextField(hintText: 'Search for products'),
+              CustomTextField(hintText: 'Search for products',icon: Icons.search),
               SizedBox(height: 16),
 
               Container(

@@ -1,7 +1,5 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:online_store/cubits/auth_cubits/auth_cubits.dart';
 import 'package:online_store/cubits/auth_cubits/auth_user_state.dart';
 import 'package:online_store/screen/home_screen.dart';

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:online_store/screen/cart_screen.dart';
 import 'package:online_store/screen/favorite_screen.dart';
 import 'package:online_store/screen/orders_history.dart';
-import 'package:online_store/screen/user_profile.dart';
+import 'package:online_store/screen/profile_screen.dart';
 
 class bottomNavigationBar extends StatelessWidget {
   const bottomNavigationBar({super.key});

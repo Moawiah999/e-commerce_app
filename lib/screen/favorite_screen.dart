@@ -15,7 +15,7 @@ class FavoriteScreen extends StatelessWidget {
         padding: const EdgeInsets.only(top: 16, left: 8, right: 8),
         child: Column(
           children: [
-            CustomTextField(hintText: 'Search for products',),
+            CustomTextField(hintText: 'Search for products',icon: Icons.search,),
             SizedBox(height: 15),
             Expanded(
               child: GridView(
