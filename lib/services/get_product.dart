@@ -17,7 +17,7 @@ class GetProduct {
 
       return productList;
     } on Exception catch (e) {
-      throw Exception('error');
+      throw Exception('error ${e.toString()}');
     }
   }
 }

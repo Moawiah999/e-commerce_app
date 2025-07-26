@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:online_store/screen/product_details_screen.dart';
 import 'package:online_store/screen/product_screen.dart';
 import 'package:online_store/widget/bottom_navigation_bar.dart';
 import 'package:online_store/widget/custom_text_field.dart';
