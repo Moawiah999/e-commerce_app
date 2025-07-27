@@ -1,16 +1,36 @@
+import 'dart:convert';
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 
-class ProductDetailsScreen extends StatelessWidget {
-  const ProductDetailsScreen({super.key});
+class ProductDetailsScreen extends StatefulWidget {
+  const ProductDetailsScreen({
+    super.key,
+    required this.product_name,
+    required this.product_image,
+    required this.information_product,
+    required this.price_product,
+  });
+  final String product_name;
+  final String product_image;
+  final int price_product;
+  final String information_product;
 
   @override
+  State<ProductDetailsScreen> createState() => _ProductDetailsScreenState();
+}
+
+class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
+  @override
   Widget build(BuildContext context) {
+    Uint8List imageBytes = base64Decode(widget.product_image);
+
     return Scaffold(
       bottomNavigationBar: BottomAppBar(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text('Total: \$100'),
+            Text('Total: \$${widget.price_product}'),
             ElevatedButton(onPressed: () {}, child: Text('Pay Now')),
           ],
         ),
@@ -24,14 +44,11 @@ class ProductDetailsScreen extends StatelessWidget {
           children: [
             Container(
               height: 450,
-              child: Image.network(
-                fit: BoxFit.fill,
-                'https://tmlewin.co.uk/cdn/shop/files/Crewneck_Tshirt_Black_67937_FLF.jpg?v=1727366656',
-              ),
+              child: Image.memory(fit: BoxFit.fill, imageBytes),
             ),
 
             Text(
-              'black t-shirt',
+              widget.product_name,
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 10),
@@ -40,13 +57,8 @@ class ProductDetailsScreen extends StatelessWidget {
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 10),
-            Text(
-              "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
-            ),
+            Text(widget.information_product),
             SizedBox(height: 10),
-
-            
-            
           ],
         ),
       ),

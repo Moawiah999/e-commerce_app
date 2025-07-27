@@ -48,11 +48,16 @@ class _ProductScreenState extends State<ProductScreen> {
                       Navigator.of(context).push(
                         MaterialPageRoute(
                           builder: (context) {
-                            return ProductDetailsScreen();
+                            return ProductDetailsScreen(
+                              product_name: product[index].product_name,
+                              product_image: product[index].product_image,
+                              information_product:
+                                  product[index].information_product,
+                              price_product: product[index].price_product,
+                            );
                           },
                         ),
                       );
-                     
                     },
                     child: Card(
                       child: ListView(
