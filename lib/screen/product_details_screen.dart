@@ -45,69 +45,8 @@ class ProductDetailsScreen extends StatelessWidget {
             ),
             SizedBox(height: 10),
 
-            Row(
-              // mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Text("Color : "),
-                Spacer(flex: 2),
-                Container(
-                  width: 25,
-                  height: 25,
-
-                  decoration: BoxDecoration(
-                    color: Colors.red,
-                    shape: BoxShape.circle,
-                  ),
-                ),
-                Spacer(flex: 1),
-                Container(
-                  width: 25,
-                  height: 25,
-
-                  decoration: BoxDecoration(
-                    color: Colors.black,
-                    shape: BoxShape.circle,
-                  ),
-                ),
-                Spacer(flex: 1),
-                Container(
-                  width: 25,
-                  height: 25,
-
-                  decoration: BoxDecoration(
-                    color: Colors.yellow,
-                    shape: BoxShape.circle,
-                  ),
-                ),
-                Spacer(flex: 1),
-                Container(
-                  width: 25,
-                  height: 25,
-
-                  decoration: BoxDecoration(
-                    color: Colors.blue,
-                    shape: BoxShape.circle,
-                  ),
-                ),
-                Spacer(flex: 1),
-              ],
-            ),
-            SizedBox(height: 10),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Text("Size : "),
-                Spacer(flex: 2),
-                Text("4"),
-                Spacer(flex: 1),
-                Text("5"),
-                Spacer(flex: 1),
-                Text("6"),
-                Spacer(flex: 1),
-                Text("6"),
-                Spacer(flex: 1),
-              ],
-            ),
+            
+            
           ],
         ),
       ),

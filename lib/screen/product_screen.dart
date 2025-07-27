@@ -52,6 +52,7 @@ class _ProductScreenState extends State<ProductScreen> {
                           },
                         ),
                       );
+                     
                     },
                     child: Card(
                       child: ListView(
