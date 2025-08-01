@@ -1,0 +1,34 @@
+import 'package:dio/dio.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:online_store/cubits/favorite_cubit/favorite_state.dart';
+import 'package:online_store/models/product_model.dart';
+import 'package:online_store/services/get_favorite_product_services.dart';
+
+class FavoriteCubit extends Cubit<FavoriteState> {
+  FavoriteCubit() : super(FavoriteProductsLoading());
+
+  List<ProductModel> productModel = [];
+
+  Future getFavoriteProduct({
+    required int user_id,
+  }) async {
+    print('getFavoriteProduct');
+    try {
+      emit(FavoriteProductsLoading());
+
+      productModel = await GetFavoriteProductServices(
+        Dio(),
+      ).getFavoriteProduct(user_id: user_id);
+
+      if (productModel.isEmpty) {
+        emit(NoFavoriteProducts());
+      } else {
+        emit(FavoriteProductsLoaded());
+      }
+    } catch (e) {
+      print('-----------=============');
+      print('Error: $e');
+      emit(FavoriteProductsLoadFailed());
+    }
+  }
+}

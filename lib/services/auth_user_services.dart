@@ -16,7 +16,6 @@ class AuthUserServices {
         'http://${dotenv.env['url']}:5000/users/register',
         data: {'username': username, 'email': email, 'password': password},
       );
-      print(response.data);
       UserModel userModel = UserModel.fromJson(response.data['data']);
 
       return userModel;
@@ -38,7 +37,6 @@ class AuthUserServices {
 
       return userModel;
     } on DioException catch (e) {
-     
       if (e.response?.statusCode == 401) {
         throw Exception('Invalid email or password');
       }
