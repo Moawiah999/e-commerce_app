@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:online_store/cubits/favorite_cubit/favorite_state.dart';
 import 'package:online_store/models/product_model.dart';
-import 'package:online_store/services/get_favorite_product_services.dart';
+import 'package:online_store/services/favorite_product_service.dart';
 
 class FavoriteCubit extends Cubit<FavoriteState> {
   FavoriteCubit() : super(FavoriteProductsLoading());
