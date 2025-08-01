@@ -16,7 +16,7 @@ class FavoriteCubit extends Cubit<FavoriteState> {
     try {
       emit(FavoriteProductsLoading());
 
-      productModel = await GetFavoriteProductServices(
+      productModel = await FavoriteProductService(
         Dio(),
       ).getFavoriteProduct(user_id: user_id);
 

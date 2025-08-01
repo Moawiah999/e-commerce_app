@@ -2,9 +2,9 @@ import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:online_store/models/product_model.dart';
 
-class GetFavoriteProductServices {
+class FavoriteProductService {
   final Dio dio;
-  GetFavoriteProductServices(this.dio);
+  FavoriteProductService(this.dio);
   Future getFavoriteProduct({
     required int user_id,
     
