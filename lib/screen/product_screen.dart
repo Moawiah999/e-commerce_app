@@ -1,11 +1,9 @@
-import 'dart:convert';
-import 'dart:typed_data';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:online_store/cubits/auth_cubits/auth_cubits.dart';
 import 'package:online_store/cubits/product_cubits/product_cubits.dart';
 import 'package:online_store/cubits/product_cubits/product_state.dart';
-import 'package:online_store/screen/product_details_screen.dart';
+import 'package:online_store/widget/product_card.dart';
 
 class ProductScreen extends StatefulWidget {
   const ProductScreen({super.key});
@@ -38,76 +36,17 @@ class _ProductScreenState extends State<ProductScreen> {
               mainAxisSpacing: 5,
             ),
             children: List.generate(product.length, (index) {
-              Uint8List imageBytes = base64Decode(product[index].product_image);
-
+              final int user_id = int.parse(
+                "${BlocProvider.of<AuthUserCubit>(context).userModel.user_id}",
+              );
               return Padding(
                 padding: const EdgeInsets.only(left: 5, right: 5, bottom: 5),
-                child: Container(
-                  child: GestureDetector(
-                    onTap: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) {
-                            return ProductDetailsScreen(
-                              product_name: product[index].product_name,
-                              product_image: product[index].product_image,
-                              information_product:
-                                  product[index].information_product,
-                              price_product: product[index].price_product,
-                            );
-                          },
-                        ),
-                      );
-                    },
-                    child: Card(
-                      child: ListView(
-                        children: [
-                          Container(
-                            alignment: Alignment.centerRight,
-                            width: 150,
-                            height: 100,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                IconButton(
-                                  onPressed: () {},
-                                  icon: Icon(Icons.favorite),
-                                ),
-                                Image.memory(imageBytes),
-                              ],
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 10),
-                            child: Container(
-                              alignment: Alignment.centerLeft,
-                              child: Text(product[index].product_name),
-                            ),
-                          ),
-                          SizedBox(height: 10),
-                          ListTile(
-                            title: Text(
-                              product[index].price_product.toString(),
-                            ),
-                            trailing: IconButton(
-                              onPressed: () {},
-                              icon: Icon(
-                                Icons.shopping_cart_sharp,
-                                color: Colors.red,
-                                size: 27,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
+                child: ProductCard(product: product[index], user_id: user_id),
               );
             }),
           );
         } else {
-          return Text('');
+          return Text('There are no products currently available.');
         }
       },
     );
