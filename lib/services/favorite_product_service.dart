@@ -5,10 +5,7 @@ import 'package:online_store/models/product_model.dart';
 class FavoriteProductService {
   final Dio dio;
   FavoriteProductService(this.dio);
-  Future getFavoriteProduct({
-    required int user_id,
-    
-  }) async {
+  Future getFavoriteProduct({required int user_id}) async {
     try {
       Response response = await Dio().get(
         'http://${dotenv.env['url']}:5000/favorites/${user_id}',

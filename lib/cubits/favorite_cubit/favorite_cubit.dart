@@ -9,9 +9,7 @@ class FavoriteCubit extends Cubit<FavoriteState> {
 
   List<ProductModel> productModel = [];
 
-  Future getFavoriteProduct({
-    required int user_id,
-  }) async {
+  Future getFavoriteProduct({required int user_id}) async {
     print('getFavoriteProduct');
     try {
       emit(FavoriteProductsLoading());

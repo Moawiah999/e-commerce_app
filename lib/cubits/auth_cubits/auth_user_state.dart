@@ -16,5 +16,4 @@ class LoginFailedState extends AuthUserState {}
 
 class LoginSuccessState extends AuthUserState {}
 
-
 class UserInformationErrorState extends AuthUserState {}
