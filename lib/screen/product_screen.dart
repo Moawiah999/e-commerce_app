@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:online_store/cubits/auth_cubits/auth_cubits.dart';
+import 'package:online_store/cubits/favorite_cubit/favorite_cubit.dart';
 import 'package:online_store/cubits/product_cubits/product_cubits.dart';
 import 'package:online_store/cubits/product_cubits/product_state.dart';
 import 'package:online_store/widget/product_card.dart';
@@ -41,7 +42,17 @@ class _ProductScreenState extends State<ProductScreen> {
               );
               return Padding(
                 padding: const EdgeInsets.only(left: 5, right: 5, bottom: 5),
-                child: ProductCard(product: product[index], user_id: user_id),
+                child: ProductCard(
+                  product: product[index],
+                  user_id: user_id,
+                  icon: Icons.favorite,
+                  onPressed: () {
+                    context.read<FavoriteCubit>().addFavoriteProduct(
+                      user_id: user_id,
+                      product_id: product[index].product_id,
+                    );
+                  },
+                ),
               );
             }),
           );

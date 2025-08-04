@@ -2,7 +2,7 @@ class UserModel {
   final String username;
   final String email;
   final String? imageUser;
-  final int? user_id;
+  final int user_id;
 
   UserModel({
     required this.username,

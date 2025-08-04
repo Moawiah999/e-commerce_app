@@ -9,10 +9,18 @@ import 'package:online_store/models/product_model.dart';
 import 'package:online_store/screen/product_details_screen.dart';
 
 class ProductCard extends StatefulWidget {
-  const ProductCard({super.key, required this.product, required this.user_id});
+  const ProductCard({
+    super.key,
+    required this.product,
+    required this.user_id,
+    required this.icon,
+    required this.onPressed,
+  });
 
   final ProductModel product;
   final int user_id;
+  final IconData icon;
+  final VoidCallback onPressed;
   @override
   State<ProductCard> createState() => _ProductCardState();
 }
@@ -59,18 +67,7 @@ class _ProductCardState extends State<ProductCard> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    IconButton(
-                      onPressed: () {
-                        print("user id = ${widget.user_id}");
-                        print("product_id ${widget.product.product_id}");
-
-                        context.read<FavoriteCubit>().addFavoriteProduct(
-                          user_id: widget.user_id,
-                          product_id: widget.product.product_id,
-                        );
-                      },
-                      icon: Icon(Icons.favorite),
-                    ),
+                    IconButton(onPressed: widget.onPressed, icon: Icon(widget.icon)),
 
                     Image.memory(imageBytes),
                   ],
