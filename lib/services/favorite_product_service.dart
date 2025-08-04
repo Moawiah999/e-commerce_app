@@ -20,4 +20,19 @@ class FavoriteProductService {
       throw Exception('error ${e.toString()}');
     }
   }
+
+  Future addFavoriteProduct({
+    required int user_id,
+    required int product_id,
+  }) async {
+    try {
+      Response response = await Dio().post(
+        'http://${dotenv.env['url']}:5000/favorites/add/${user_id}/${product_id}',
+      );
+      dynamic data = response.data;
+      print(data);
+    } on Exception catch (e) {
+      throw Exception('error addFavoriteProduct ${e.toString()}');
+    }
+  }
 }
