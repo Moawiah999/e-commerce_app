@@ -8,7 +8,6 @@ class FavoriteCubit extends Cubit<FavoriteState> {
   FavoriteCubit() : super(FavoriteProductsLoading());
 
   List<ProductModel> productModel = [];
-  dynamic favoriteProduct;
   Future getFavoriteProduct({required int user_id}) async {
     print('getFavoriteProduct');
     try {
@@ -35,7 +34,7 @@ class FavoriteCubit extends Cubit<FavoriteState> {
     required int product_id,
   }) async {
     try {
-      favoriteProduct = await FavoriteProductService(
+      await FavoriteProductService(
         Dio(),
       ).addFavoriteProduct(user_id: user_id, product_id: product_id);
       emit(AddToFavoritesSuccess());
@@ -44,6 +43,22 @@ class FavoriteCubit extends Cubit<FavoriteState> {
       emit(AddToFavoritesFailure());
       print('-----------addFavoriteProductCubit=============');
       print('Error: $e');
+    }
+  }
+
+  Future deleteFavoriteProduct({
+    required int user_id,
+    required int product_id,
+  }) async {
+    try {
+      await FavoriteProductService(
+        Dio(),
+      ).deleteFavoriteProduct(user_id: user_id, product_id: product_id);
+      emit(RemoveFromFavoritesSuccess());
+      await getFavoriteProduct(user_id: user_id);
+    } catch (e) {
+      print('deleteFavoriteProduct ${e.toString()}');
+      emit(RemoveFromFavoritesFailure());
     }
   }
 }

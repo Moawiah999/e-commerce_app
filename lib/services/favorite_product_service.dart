@@ -35,4 +35,19 @@ class FavoriteProductService {
       throw Exception('error addFavoriteProduct ${e.toString()}');
     }
   }
+
+  Future deleteFavoriteProduct({
+    required int user_id,
+    required int product_id,
+  }) async {
+    try {
+      Response response = await Dio().delete(
+        'http://${dotenv.env['url']}:5000/favorites/delete/${user_id}/${product_id}',
+      );
+      dynamic data = response.data;
+      print(data);
+    } on Exception catch (e) {
+      throw Exception('error deleteFavoriteProduct ${e.toString()}');
+    }
+  }
 }

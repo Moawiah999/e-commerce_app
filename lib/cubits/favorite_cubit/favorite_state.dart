@@ -11,3 +11,7 @@ class NoFavoriteProducts extends FavoriteState {}
 class AddToFavoritesSuccess extends FavoriteState {}
 
 class AddToFavoritesFailure extends FavoriteState {}
+
+class RemoveFromFavoritesSuccess extends FavoriteState {}
+
+class RemoveFromFavoritesFailure extends FavoriteState {}

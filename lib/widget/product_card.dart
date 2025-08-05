@@ -67,7 +67,10 @@ class _ProductCardState extends State<ProductCard> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    IconButton(onPressed: widget.onPressed, icon: Icon(widget.icon)),
+                    IconButton(
+                      onPressed: widget.onPressed,
+                      icon: Icon(widget.icon),
+                    ),
 
                     Image.memory(imageBytes),
                   ],

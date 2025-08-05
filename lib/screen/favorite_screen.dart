@@ -17,9 +17,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
   void getFavoriteProduct() {
     final id = BlocProvider.of<AuthUserCubit>(context).userModel.user_id;
 
-    BlocProvider.of<FavoriteCubit>(
-      context,
-    ).getFavoriteProduct(user_id: int.parse('${id}'));
+    BlocProvider.of<FavoriteCubit>(context).getFavoriteProduct(user_id: id);
   }
 
   @override
@@ -35,7 +33,24 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
         title: Text('Favorite Products'),
         automaticallyImplyLeading: false,
       ),
-      body: BlocBuilder<FavoriteCubit, FavoriteState>(
+      body: BlocConsumer<FavoriteCubit, FavoriteState>(
+        listener: (context, state) {
+          if (state is RemoveFromFavoritesSuccess) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text(
+                  'product has  successfully removed from favorites',
+                ),
+              ),
+            );
+          } else if (state is RemoveFromFavoritesFailure) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text('Failed to remove product from favorites'),
+              ),
+            );
+          }
+        },
         builder: (context, state) {
           if (state is FavoriteProductsLoading) {
             return Center(child: CircularProgressIndicator());
@@ -66,7 +81,17 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                                 context,
                               ).userModel.user_id,
                           icon: Icons.delete,
-                          onPressed: () {},
+                          onPressed: () {
+                            BlocProvider.of<FavoriteCubit>(
+                              context,
+                            ).deleteFavoriteProduct(
+                              user_id:
+                                  BlocProvider.of<AuthUserCubit>(
+                                    context,
+                                  ).userModel.user_id,
+                              product_id: products[index].product_id,
+                            );
+                          },
                         );
                       }),
                     ),
@@ -74,8 +99,10 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                 ],
               ),
             );
-          } else {
+          } else if (state is NoFavoriteProducts) {
             return Center(child: Text('There are no favorite products yet.'));
+          } else {
+            return Center(child: Text('Something went wrong.'));
           }
         },
       ),
