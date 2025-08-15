@@ -11,13 +11,15 @@ class ProductCard extends StatefulWidget {
     required this.product,
     required this.user_id,
     required this.icon,
-    required this.onPressed,
+    required this.onFavoritePressed,
+    required this.onCartPressed,
   });
 
   final ProductModel product;
   final int user_id;
   final IconData icon;
-  final VoidCallback onPressed;
+  final VoidCallback onFavoritePressed;
+  final VoidCallback onCartPressed;
   @override
   State<ProductCard> createState() => _ProductCardState();
 }
@@ -53,7 +55,7 @@ class _ProductCardState extends State<ProductCard> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   IconButton(
-                    onPressed: widget.onPressed,
+                    onPressed: widget.onFavoritePressed,
                     icon: Icon(widget.icon),
                   ),
 
@@ -72,7 +74,7 @@ class _ProductCardState extends State<ProductCard> {
             ListTile(
               title: Text(widget.product.price_product.toString()),
               trailing: IconButton(
-                onPressed: () {},
+                onPressed: widget.onCartPressed,
                 icon: Icon(
                   Icons.shopping_cart_sharp,
                   color: Colors.red,

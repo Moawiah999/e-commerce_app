@@ -81,7 +81,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                                 context,
                               ).userModel.user_id,
                           icon: Icons.delete,
-                          onPressed: () {
+                          onFavoritePressed: () {
                             BlocProvider.of<FavoriteCubit>(
                               context,
                             ).deleteFavoriteProduct(
@@ -92,6 +92,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                               product_id: products[index].product_id,
                             );
                           },
+                          onCartPressed: () {},
                         );
                       }),
                     ),

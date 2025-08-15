@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:online_store/cubits/auth_cubits/auth_cubits.dart';
+import 'package:online_store/cubits/cart_cubit/cart_cubit.dart';
+import 'package:online_store/cubits/cart_cubit/cart_state.dart';
 import 'package:online_store/cubits/favorite_cubit/favorite_cubit.dart';
 import 'package:online_store/cubits/favorite_cubit/favorite_state.dart';
 import 'package:online_store/cubits/product_cubits/product_cubits.dart';
@@ -23,18 +25,35 @@ class _ProductScreenState extends State<ProductScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<FavoriteCubit, FavoriteState>(
-      listener: (context, state) {
-        if (state is AddToFavoritesSuccess) {
-          ScaffoldMessenger.of(
-            context,
-          ).showSnackBar(SnackBar(content: Text('Added to favorites')));
-        } else if (state is AddToFavoritesFailure) {
-          ScaffoldMessenger.of(
-            context,
-          ).showSnackBar(SnackBar(content: Text('Failed to add to favorites')));
-        }
-      },
+    return MultiBlocListener(
+      listeners: [
+        BlocListener<FavoriteCubit, FavoriteState>(
+          listener: (context, state) {
+            if (state is AddToFavoritesSuccess) {
+              ScaffoldMessenger.of(
+                context,
+              ).showSnackBar(SnackBar(content: Text('Added to favorites')));
+            } else if (state is AddToFavoritesFailure) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text('Failed to add to favorites')),
+              );
+            }
+          },
+        ),
+        BlocListener<CartCubit, CartState>(
+          listener: (context, state) {
+            if (state is AddToCartsSuccess) {
+              ScaffoldMessenger.of(
+                context,
+              ).showSnackBar(SnackBar(content: Text('Added to cart')));
+            } else if (state is AddToCartsFailure) {
+              ScaffoldMessenger.of(
+                context,
+              ).showSnackBar(SnackBar(content: Text('Failed to add to cart')));
+            }
+          },
+        ),
+      ],
       child: BlocBuilder<ProductCubits, ProductState>(
         builder: (context, state) {
           if (state is LoadingProducts) {
@@ -60,8 +79,14 @@ class _ProductScreenState extends State<ProductScreen> {
                     product: product[index],
                     user_id: user_id,
                     icon: Icons.favorite,
-                    onPressed: () {
+                    onFavoritePressed: () {
                       context.read<FavoriteCubit>().addFavoriteProduct(
+                        user_id: user_id,
+                        product_id: product[index].product_id,
+                      );
+                    },
+                    onCartPressed: () {
+                      context.read<CartCubit>().addCartProducts(
                         user_id: user_id,
                         product_id: product[index].product_id,
                       );

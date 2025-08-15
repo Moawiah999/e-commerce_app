@@ -4,13 +4,14 @@ class ProductModel {
   String information_product;
   int price_product;
   int product_id;
-
+  int? number_products;
   ProductModel({
     required this.product_name,
     required this.product_image,
     required this.price_product,
     required this.product_id,
     required this.information_product,
+    this.number_products,
   });
   factory ProductModel.fromJson(json) {
     return ProductModel(
@@ -19,6 +20,7 @@ class ProductModel {
       price_product: json['price_product'],
       product_id: json['id'],
       information_product: json['information_product'],
+      number_products: json['number_products'],
     );
   }
 }
