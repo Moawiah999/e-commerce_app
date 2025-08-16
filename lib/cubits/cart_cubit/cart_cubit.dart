@@ -34,6 +34,7 @@ class CartCubit extends Cubit<CartState> {
         Dio(),
       ).addCartProducts(user_id: user_id, product_id: product_id);
       emit(AddToCartsSuccess());
+      getCartProduct(user_id: user_id);
     } catch (e) {
       print('===================');
       emit(AddToCartsFailure());
