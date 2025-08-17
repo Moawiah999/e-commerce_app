@@ -10,6 +10,8 @@ class NoCartProducts extends CartState {}
 
 class AddToCartsSuccess extends CartState {}
 
+class ProductAlreadyInCart extends CartState {}
+
 class AddToCartsFailure extends CartState {}
 
 class RemoveFromCartsSuccess extends CartState {}

@@ -30,11 +30,16 @@ class CartCubit extends Cubit<CartState> {
     required int product_id,
   }) async {
     try {
-      await CartProductServices(
-        Dio(),
-      ).addCartProducts(user_id: user_id, product_id: product_id);
-      emit(AddToCartsSuccess());
-      getCartProduct(user_id: user_id);
+      final alreadyInCart = productModel.any((p) => p.product_id == product_id);
+      if (alreadyInCart) {
+        emit(ProductAlreadyInCart());
+      } else {
+        await CartProductServices(
+          Dio(),
+        ).addCartProducts(user_id: user_id, product_id: product_id);
+        emit(AddToCartsSuccess());
+        getCartProduct(user_id: user_id);
+      }
     } catch (e) {
       print('===================');
       emit(AddToCartsFailure());
