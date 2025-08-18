@@ -50,10 +50,10 @@ class _ProductScreenState extends State<ProductScreen> {
               ScaffoldMessenger.of(
                 context,
               ).showSnackBar(SnackBar(content: Text('Failed to add to cart')));
-            }else{
-                  ScaffoldMessenger.of(
-                context,
-              ).showSnackBar(SnackBar(content: Text('Product Already In Cart')));
+            } else if (state is ProductAlreadyInCart) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text('Product Already In Cart')),
+              );
             }
           },
         ),
